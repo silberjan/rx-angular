@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { RxLetInstantModule } from '../../../../rx-angular-pocs/template/directives/let/rx-let-instant.directive';
 import { ROUTES } from './let-template-binding.routes';
 import { LetTemplateBindingComponent } from './let-template-binding.component';
 import { LetTemplateBindingHttpExampleComponent } from './examples/let-template-binding-http-example.component';
@@ -35,6 +36,7 @@ const DECLARATIONS = [
     PushModule,
     MatBadgeModule,
     LetModule,
+    RxLetInstantModule,
   ],
 })
 export class LetTemplateBindingModule {}

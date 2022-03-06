@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RxStrategyCredentials } from '@rx-angular/cdk/render-strategies';
 import { AppComponent, AppComponentModule } from './app-component';
 import { ENVIRONMENT_SETTINGS } from './shared/environment.token';
 import { environment } from '../environments/environment';
@@ -14,7 +15,7 @@ import { RX_RENDER_STRATEGIES_CONFIG } from '../../../../libs/cdk/render-strateg
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppComponentModule
+    AppComponentModule,
   ],
   providers: [
     {
@@ -25,9 +26,19 @@ import { RX_RENDER_STRATEGIES_CONFIG } from '../../../../libs/cdk/render-strateg
       provide: RX_RENDER_STRATEGIES_CONFIG,
       useValue: {
         primaryStrategy: 'normal',
-        patchZone: true
-      }
-    }
+        patchZone: true,
+        customStrategies: {
+          instant: {
+            name: 'instant',
+            work: (cdRef) => cdRef.detectChanges(),
+            behavior: (work) => (o$) => {
+              work();
+              return o$;
+            },
+          },
+        },
+      },
+    },
   ],
   declarations: [HomeComponent],
   exports: [],

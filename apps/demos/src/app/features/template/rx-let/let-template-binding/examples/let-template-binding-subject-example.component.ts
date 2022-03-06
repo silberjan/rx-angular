@@ -111,7 +111,7 @@ import { scan, startWith } from 'rxjs/operators';
 })
 export class LetTemplateBindingSubjectExampleComponent {
   errorStub = new Error('Template observable error!');
-  visibleStrategy = 'local';
+  visibleStrategy = 'instant';
   signals$: Subject<number>;
   signalsCount$: Observable<number>;
 
